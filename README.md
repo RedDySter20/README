@@ -79,4 +79,4 @@ _Note:_ Only available during the game.
 
 ## Game field
 
-Here is a [litematica](https://github.com/KruASe76/MineNopoly/raw/main/additions/minenopoly_field.litematic) of the game field designed by me, however, you can always build your own!
+Here is a [litematica](https://github.com/RedDySter20/README/blob/main/minenopoly_field.litematic) of the game field designed by me, however, you can always build your own!
