@@ -1,12 +1,5 @@
 # MineNopoly
 
-![](https://img.shields.io/badge/MINECRAFT-1.16.5+-966C4A?style=for-the-badge&labelColor=53AC56)
-![](https://img.shields.io/badge/JAVA-1.8+-5283A2?style=for-the-badge&labelColor=E86F00)
-
-[Modrinth](https://modrinth.com/plugin/minenopoly) ·
-[SpigotMC](https://www.spigotmc.org/resources/minenopoly.110159/) ·
-[CurseForge](https://www.curseforge.com/minecraft/bukkit-plugins/minenopoly)
-
 A Spigot (Bukkit) Minecraft plugin that implements automated Monopoly bank into the game.
 
 
@@ -87,26 +80,3 @@ _Note:_ Only available during the game.
 ## Game field
 
 Here is a [litematica](https://github.com/KruASe76/MineNopoly/raw/main/additions/minenopoly_field.litematic) of the game field designed by me, however, you can always build your own!
-
-
-## Reference
-
-- [PlugManX](https://github.com/TheBlackEntity/PlugMan) (also used during development)
-  - `README.md` structure
-  - Some code
-- [Monopoly Wiki](https://monopoly.fandom.com/wiki/Main_Page)
-  - Property names, _Chance_ and _Community chest_ cards for US and UK editions
-- [Wikibooks (Monopoly properties reference)](https://en.wikibooks.org/wiki/Monopoly/Properties_reference)
-  - Property costs and rents
-
-
-## Special thanks to:
-
-- [Legitimoose](https://www.youtube.com/c/Legitimoose) for amazing Paper (Bukkit) plugin (in Kotlin) project setup [tutorial](https://youtu.be/5DBJcz0ceaw)
-- [BeBr0](https://www.youtube.com/c/BeBr0) for Spigot (Bukkit) plugin development [tutorial [ru]](https://youtube.com/playlist?list=PLlLq-eYkh0bB_uyZN4NdzkxLBs9glZmIT) with very clear API explanation
-
-## Copyright
-
-All the information about the original game used to develop this project was taken from open sources (mostly [Monopoly fandom wiki](https://monopoly.fandom.com/wiki/Main_Page)) and my personal experience.
-
-The project itself is distributed under [GNU GPLv3](./LICENSE).
