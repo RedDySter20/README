@@ -1,82 +1,72 @@
 # MineNopoly
 
-A Spigot (Bukkit) Minecraft plugin that implements automated Monopoly bank into the game.
+Плагин для Minecraft на базе Spigot (Bukkit), который добавляет автоматизированный банк Monopoly в игру.
 
+## Особенности
 
-## Features
+- Функциональность банка Monopoly с использованием сундука (`chest`), бочки (`barrel`) или любого `shulker_box`, в которые помещаются и извлекаются игровые предметы.
+- Поддержка локализации игры для США, Великобритании и России.
+- Отслеживание баланса игроков с использованием таблицы результатов (scoreboard).
+- Случайная карта _Chance_ и _Community chest_.
+- Реализация _домов_ (Houses) с использованием `sea_pickles` (их можно размещать до четырех на одном блоке).
+- _Отелей_ (Hotels) можно сразу сломать без инструментов, используя блок `lantern`.
+- Сразу можно сломать блок `player_head` (предполагается, что это игровые фишки).
+- Книга со ссылками для получения игровых предметов, списком и описаниями всех игровых свойств.
+- Встроенный рандомизатор для кубиков.
+- Защита от разрушения блока банка; защита от потребления/размещения игровых предметов.
+- Защита игровых предметов от подделки через [NBT данные](https://minecraft.fandom.com/wiki/NBT_format).
 
-- Monopoly bank functionality using a `chest`, `barrel` or any `shulker_box` in which game items are placed and removed from
-- US, UK and RU game localizations support
-- Player balance tracking using a scoreboard
-- _Chance_ and _Community chest_ cards randomization
-- _Houses_ implementation using `sea_pickles` (can be placed up to four in a single block)
-- _Hotels_ `lantern` blocks immediate breaking without tools
-- `player_head` blocks immediate breaking (assumed to be tokens)
-- A book with links to get game items and a list and descriptions of all game properties
-- Built-in dice randomizer
-- Bank block breaking protection; game items consuming/placement protection
-- Anti-counterfeiting game items protection via [NBT data](https://minecraft.fandom.com/wiki/NBT_format)
+## Использование
 
+### Как играть?
 
-## Usage
+Просто создайте игровое поле, разместите сундук (может быть также бочкой или `shulker_box`) где-нибудь и вызовите команду `/mn start <координаты сундука>`!
+Для получения и изъятия игровых предметов используйте [игровые записи чата](#valid-in-game-chat-entries) и книгу, которую можно получить с помощью команды `/mn book <локализация>`.
+_Дома_ и _Отели_ предназначены для размещения на улицах; все остальные предметы предназначены только для хранения в инвентаре и передачи между игроками.
+Чтобы завершить игру, верните все игровые предметы в банк (и введите `--` для их удаления) и вызовите команду `/mn finish`; если вы не можете вернуть их, один из операторов сервера (по умолчанию) должен вызвать `/mn finish forced`.
 
-### How to play?
+### Команды
 
-You just build a playing field, place a chest (can also be a barrel or a shulker box) somewhere and call `/mn start <chest coordinates>`!  
-To get and remove game items use [chat entries](#valid-in-game-chat-entries) and the book you can get via `/mn book <localization>`.  
-_Houses_ and _Hotels_ are meant to be placed on street cells; all other items are meant not to be used in any way except keeping in the inventory and transferring between the players.  
-To finish the game return all the game items to the bank (and type `--` to remove them) and call `/mn finish`; if you can't return them one of the server operators (by default) should call `/mn finish forced`.
+`/minenopoly` - это основная команда плагина, которая имеет алиас `/mn`.
 
-### Commands
+| Команда                | Описание                                                                   |
+|------------------------|----------------------------------------------------------------------------|
+| `/mn help [команда]`   | Показать справку для указанной команды, либо список доступных команд       |
+| `/mn book <лок>`       | Получить книгу для использования во время игры                             |
+| `/mn start <блок>`     | Начать игру (отслеживание чата, таблица результатов и т. д.) с указанным блоком в качестве банка |
+| `/mn finish`           | Завершить игру                                                             |
+| `/mn finish forced`    | Завершить игру даже если все игровые предметы не были возвращены           |
+| `/mn reload`           | Перезагрузить конфигурацию                                                 |
+| `/mn get <аргументы>`  | Вспомогательная команда для использования при клике по ссылкам в книге     |
 
-`/minenopoly` is the main plugin command, which has the alias `/mn`.
+### Допустимые записи чата в игре
 
-| Command              | Description                                                                   |
-|----------------------|-------------------------------------------------------------------------------|
-| `/mn help [command]` | Show help for given command, for available commands otherwise                 |
-| `/mn book <loc>`     | Get the book to use during the game                                           |
-| `/mn start <block>`  | Start the game (chat tracking, scoreboard, etc.) with given block as the bank |
-| `/mn finish`         | Finish the game                                                               |
-| `/mn finish forced`  | Finish even if not all game items have been returned                          |
-| `/mn reload`         | Reload config                                                                 |
-| `/mn get <args>`     | Auxiliary command used when clicking on links in the book                     |
+_Примечание:_ Доступно только во время игры.
 
-### Valid in-game chat entries
+| Запись чата | Описание                                                                 |
+|-------------|--------------------------------------------------------------------------|
+| `+<число>`  | Положить указанное количество игровых денег в банк                         |
+| `-<число>`  | Изъять указанное количество игровых денег из банка (с сдачей при необходимости) |
+| `--`        | Удалить все игровые предметы из банка (использованные действия, проданные свойства и т. д.) |
+| `?`         | Бросить кубики (показать два случайных числа от 1 до 6)                   |
 
-_Note:_ Only available during the game.
+## Конфигурация ([по умолчанию](/src/main/resources/config.yml))
 
-| Chat entry  | Description                                                                    |
-|-------------|--------------------------------------------------------------------------------|
-| `+<number>` | Place given amount of game money into the bank                                 |
-| `-<number>` | Remove given amount of game money from the bank (with change if needed)        |
-| `--`        | Remove all game items from the bank (used action cards, sold properties, etc.) |
-| `?`         | Roll the dice (display two random numbers from 1 to 6)                         |
+- Расстояние в игре (см. файл конфигурации для объяснения)
+- Игровые деньги (и их номиналы)
+- Сообщения плагина
+  - информационные
+  - ошибки
+  - справка
 
+## Права доступа (Permissions)
 
-## Configuration ([default](/src/main/resources/config.yml))
-
-- Game distance (see config file for explanation)
-- Game money items (also their denominations)
-- Plugin messages
-  - info
-  - error
-  - help
-
-
-## Permissions
-
-| Permission node            | Default | Description                                                             |
-|----------------------------|---------|-------------------------------------------------------------------------|
-| `minenopoly.help`          | true    | Allows using `/mn help` (lists only available commands)                 |
-| `minenopoly.get`           | true    | Allows using `/mn get` and chat entries (allows to play basically)      |
-| `minenopoly.book`          | true    | Allows using `/mn book`                                                 |
-| `minenopoly.start`         | true    | Allows using `/mn start`                                                |
-| `minenopoly.finish`        | true    | Allows using `/mn finish` (without `forced` argument)                   |
-| `minenopoly.finish.forced` | op      | Allows using `/mn finish forced`                                        |
-| `minenopoly.reload`        | op      | Allows using `/mn reload`                                               |
-| `minenopoly.admin`         | op      | Refers to `minenopoly.reload` and `minenopoly.finish.forced` by default |
-
-
-## Game field
-
-Here is a [litematica](https://github.com/RedDySter20/README/blob/main/minenopoly_field.litematic) of the game field designed by me, however, you can always build your own!
+| Нода разрешения         | По умолчанию | Описание                                                            |
+|-------------------------|--------------|--------------------------------------------------------------------|
+| `minenopoly.help`       | true         | Позволяет использовать `/mn help` (показать список доступных команд) |
+| `minenopoly.get`        | true         | Позволяет использовать `/mn get` и записи чата (в основном позволяет играть) |
+| `minenopoly.book`       | true         | Позволяет использовать `/mn book`                                    |
+| `minenopoly.start`      | true         | Позволяет использовать `/mn start`                                   |
+| `minenopoly.finish`     | true         | Позволяет использовать `/mn finish` (без аргумента `forced`)       |
+| `minenopoly.finish.forced` | op        | Позволяет использовать `/mn finish forced`                          |
+| `minenopoly.reload`     | op           | Позволяет использовать `/mn reload`
